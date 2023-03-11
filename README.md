@@ -1,5 +1,5 @@
 # Football-Match-Outcome-Prediction
-*Table Of Contents*
+## Table Of Contents
 - Introduction
 - Data Loading and Preparation
   - Exploratory Data Analysis
@@ -24,7 +24,7 @@
 - Conclusion
 
 
-*Project Overview*
+ ## Project Overview
 
 This project aims to predict the outcome of football matches using machine learning techniques. The dataset used in this project is from the La Liga 2011-2012 season, which includes data from all 20 teams that competed that year.
 
