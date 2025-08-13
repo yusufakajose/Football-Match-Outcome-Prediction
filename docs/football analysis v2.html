@@ -9659,14 +9659,14 @@ Average number of goals scored by away teams: 1.08
 <pre>Accuracy: 0.5263157894736842
 
 Confusion Matrix:
- [[25 23]
- [22 25]]
+ [[24 24]
+ [21 26]]
 
 Classification Report:
                precision    recall  f1-score   support
 
-           0       0.53      0.52      0.53        48
-           1       0.52      0.53      0.53        47
+           0       0.53      0.50      0.52        48
+           1       0.52      0.55      0.54        47
 
     accuracy                           0.53        95
    macro avg       0.53      0.53      0.53        95
@@ -9771,10 +9771,10 @@ weighted avg       0.53      0.53      0.53        95
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[[ 6  4 14]
- [ 4  5 20]
- [ 6 10 45]]
-0.49122807017543857
+<pre>[[ 6  3 18]
+ [ 3  3 26]
+ [ 5 12 38]]
+0.41228070175438597
 </pre>
 </div>
 </div>
@@ -10574,7 +10574,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Accuracy: 0.5350877192982456
+<pre>Accuracy: 0.4649122807017544
 </pre>
 </div>
 </div>
@@ -10642,7 +10642,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Naive Bayes accuracy: 0.2982456140350877
+<pre>Naive Bayes accuracy: 0.32456140350877194
 </pre>
 </div>
 </div>
@@ -11399,7 +11399,13 @@ weighted avg       0.48      0.47      0.48        70
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Holdout metrics | acc=0.471 | macro-F1=0.395 | bal-acc=0.396 | logloss=1.077 | brier=0.644
-Baseline majority | acc=0.571 | macro-F1=0.242
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Baseline majority | acc=0.571 | macro-F1=0.242
 Baseline always 'H' | acc=0.571 | macro-F1=0.242
 </pre>
 </div>
@@ -11904,7 +11910,13 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>CV fold 1: acc=0.414 macroF1=0.330
-CV fold 2: acc=0.539 macroF1=0.413
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>CV fold 2: acc=0.539 macroF1=0.413
 </pre>
 </div>
 </div>
@@ -11945,6 +11957,87 @@ Classification report on holdout:
    macro avg       0.46      0.44      0.42       377
 weighted avg       0.49      0.53      0.48       377
 
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57e029a0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [49]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Sanity checks for multi-season pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># 1) Data loading checks</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">multi</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"No matches loaded"</span>
+<span class="k">assert</span> <span class="n">multi</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"Found missing dates after cleaning"</span>
+<span class="c1"># Teams lowercased and trimmed</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">multi</span><span class="p">[</span><span class="s1">'HomeTeam'</span><span class="p">]</span> <span class="o">==</span> <span class="n">multi</span><span class="p">[</span><span class="s1">'HomeTeam'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"HomeTeam not normalized"</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">multi</span><span class="p">[</span><span class="s1">'AwayTeam'</span><span class="p">]</span> <span class="o">==</span> <span class="n">multi</span><span class="p">[</span><span class="s1">'AwayTeam'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"AwayTeam not normalized"</span>
+
+<span class="c1"># No duplicate fixtures by Season/Date/Teams/scores</span>
+<span class="n">dupe_subset</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Season'</span><span class="p">,</span><span class="s1">'Date'</span><span class="p">,</span><span class="s1">'HomeTeam'</span><span class="p">,</span><span class="s1">'AwayTeam'</span><span class="p">,</span><span class="s1">'FTHG'</span><span class="p">,</span><span class="s1">'FTAG'</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">multi</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">dupe_subset</span><span class="p">:</span>
+    <span class="n">dups</span> <span class="o">=</span> <span class="n">multi</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">dupe_subset</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">dups</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Duplicate fixtures found: </span><span class="si">{</span><span class="n">dups</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># 2) Feature presence and health</span>
+<span class="n">required_feats</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'elo_diff'</span><span class="p">,</span><span class="s1">'h_pts6'</span><span class="p">,</span><span class="s1">'a_pts6'</span><span class="p">,</span><span class="s1">'h_gf6'</span><span class="p">,</span><span class="s1">'a_gf6'</span><span class="p">,</span><span class="s1">'h_ga6'</span><span class="p">,</span><span class="s1">'a_ga6'</span><span class="p">,</span><span class="s1">'h_hst6'</span><span class="p">,</span><span class="s1">'a_hst6'</span><span class="p">,</span>
+    <span class="s1">'h_pts6_ewm'</span><span class="p">,</span><span class="s1">'a_pts6_ewm'</span><span class="p">,</span><span class="s1">'h_gf6_ewm'</span><span class="p">,</span><span class="s1">'a_gf6_ewm'</span><span class="p">,</span><span class="s1">'h_ga6_ewm'</span><span class="p">,</span><span class="s1">'a_ga6_ewm'</span><span class="p">,</span><span class="s1">'h_hst6_ewm'</span><span class="p">,</span><span class="s1">'a_hst6_ewm'</span><span class="p">,</span>
+    <span class="s1">'pts6_diff'</span><span class="p">,</span><span class="s1">'gf6_diff'</span><span class="p">,</span><span class="s1">'ga6_diff'</span><span class="p">,</span><span class="s1">'hst6_diff'</span><span class="p">,</span><span class="s1">'pts6_ewm_diff'</span><span class="p">,</span><span class="s1">'gf6_ewm_diff'</span><span class="p">,</span><span class="s1">'ga6_ewm_diff'</span><span class="p">,</span><span class="s1">'hst6_ewm_diff'</span><span class="p">,</span>
+    <span class="s1">'h_rest'</span><span class="p">,</span><span class="s1">'a_rest'</span><span class="p">,</span><span class="s1">'rest_diff'</span><span class="p">,</span><span class="s1">'elo_rest_int'</span><span class="p">,</span><span class="s1">'h_n'</span><span class="p">,</span><span class="s1">'a_n'</span><span class="p">,</span><span class="s1">'FTR'</span><span class="p">,</span><span class="s1">'Season'</span><span class="p">,</span><span class="s1">'Date'</span><span class="p">,</span><span class="s1">'HomeTeam'</span><span class="p">,</span><span class="s1">'AwayTeam'</span>
+<span class="p">]</span>
+<span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">required_feats</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fe_ms</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">missing</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Missing engineered features: </span><span class="si">{</span><span class="n">missing</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Burn-in condition</span>
+<span class="k">assert</span> <span class="p">((</span><span class="n">fe_ms</span><span class="p">[</span><span class="s1">'h_n'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">fe_ms</span><span class="p">[</span><span class="s1">'a_n'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"Burn-in filter failed (h_n/a_n &lt; 3 present)"</span>
+
+<span class="c1"># No NaN/inf in numeric engineered features</span>
+<span class="n">num_check_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">required_feats</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">fe_ms</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">fe_ms</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="s1">'O'</span><span class="p">]</span>
+<span class="n">num_vals</span> <span class="o">=</span> <span class="n">fe_ms</span><span class="p">[</span><span class="n">num_check_cols</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">null_counts</span> <span class="o">=</span> <span class="n">num_vals</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">null_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"NaN/Inf present in engineered numeric features: </span><span class="si">{</span><span class="n">null_counts</span><span class="p">[</span><span class="n">null_counts</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># 3) Splitting checks</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">holdout_seasons</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Holdout seasons not set"</span>
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">holdout_seasons</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fe_ms</span><span class="p">[</span><span class="s1">'Season'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())),</span> <span class="s2">"Holdout seasons not in dataset"</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">aX</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">bX</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"Train/holdout split sizes invalid"</span>
+
+<span class="c1"># 4) Time-series CV checks (chronology respected)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+<span class="n">_a_dates</span> <span class="o">=</span> <span class="n">fe_ms</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">fe_ms</span><span class="p">[</span><span class="s1">'Season'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">unique_seasons_ordered</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">holdout_seasons</span><span class="p">)]),</span> <span class="s1">'Date'</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">va</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">_a_dates</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">_a_dates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">tr</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">_a_dates</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">va</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">"CV leakage in fold </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> (train dates after val start)"</span>
+
+<span class="c1"># 5) Model outputs sanity</span>
+<span class="n">probs_sample</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">bX</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">row_sums</span> <span class="o">=</span> <span class="n">probs_sample</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">row_sums</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">),</span> <span class="s2">"Predicted probabilities do not sum to 1"</span>
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">'clf'</span><span class="p">]</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s1">'H'</span><span class="p">,</span><span class="s1">'D'</span><span class="p">,</span><span class="s1">'A'</span><span class="p">},</span> <span class="s2">"Unexpected target classes in model"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"All sanity checks passed."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>All sanity checks passed.
 </pre>
 </div>
 </div>
