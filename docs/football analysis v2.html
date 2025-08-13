@@ -9656,21 +9656,21 @@ Average number of goals scored by away teams: 1.08
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Accuracy: 0.5473684210526316
+<pre>Accuracy: 0.5368421052631579
 
 Confusion Matrix:
- [[26 22]
+ [[25 23]
  [21 26]]
 
 Classification Report:
                precision    recall  f1-score   support
 
-           0       0.55      0.54      0.55        48
-           1       0.54      0.55      0.55        47
+           0       0.54      0.52      0.53        48
+           1       0.53      0.55      0.54        47
 
-    accuracy                           0.55        95
-   macro avg       0.55      0.55      0.55        95
-weighted avg       0.55      0.55      0.55        95
+    accuracy                           0.54        95
+   macro avg       0.54      0.54      0.54        95
+weighted avg       0.54      0.54      0.54        95
 
 </pre>
 </div>
@@ -9771,10 +9771,10 @@ weighted avg       0.55      0.55      0.55        95
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[[ 5  3 15]
- [ 3  4 23]
- [ 2  7 52]]
-0.5350877192982456
+<pre>[[11  0 19]
+ [ 7  7 18]
+ [ 7  7 38]]
+0.49122807017543857
 </pre>
 </div>
 </div>
@@ -10574,7 +10574,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Accuracy: 0.543859649122807
+<pre>Accuracy: 0.5175438596491229
 </pre>
 </div>
 </div>
@@ -10642,7 +10642,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Naive Bayes accuracy: 0.47368421052631576
+<pre>Naive Bayes accuracy: 0.32456140350877194
 </pre>
 </div>
 </div>
@@ -10905,7 +10905,7 @@ Skipping features without any observed values: ['Referee']. At least one non-mis
 
 <span class="c1"># Candidate models</span>
 <span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">'LogReg(L2)'</span><span class="p">:</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">multi_class</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">),</span>
+    <span class="s1">'LogReg(L2)'</span><span class="p">:</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">'balanced'</span><span class="p">,</span> <span class="n">multi_class</span><span class="o">=</span><span class="s1">'multinomial'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
     <span class="s1">'RandomForest'</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
     <span class="s1">'SVC(rbf)'</span><span class="p">:</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">'rbf'</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
     <span class="s1">'KNN(k=15)'</span><span class="p">:</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
@@ -10963,23 +10963,23 @@ Skipping features without any observed values: ['Referee']. At least one non-mis
   warnings.warn(
 /home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
   warnings.warn(
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
 /home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
-  warnings.warn(
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
-  warnings.warn(
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
   warnings.warn(
 </pre>
 </div>
@@ -10989,35 +10989,31 @@ Skipping features without any observed values: ['Referee']. At least one non-mis
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>CV summary (train folds):
         model  cv_acc_mean  cv_acc_std  cv_macro_f1_mean  cv_macro_f1_std
-  LogReg(L2)     0.505263    0.071393          0.419187         0.063888
 RandomForest     0.515789    0.059339          0.417848         0.045011
+  LogReg(L2)     0.417544    0.053674          0.399107         0.048684
     SVC(rbf)     0.536842    0.028505          0.390070         0.014956
    KNN(k=15)     0.494737    0.051329          0.350869         0.028129
-
-Holdout (25%) performance for: LogReg(L2)
-Accuracy: 0.5157894736842106
-Macro-F1: 0.4586399108138239
-
-Classification report:
-               precision    recall  f1-score   support
-
-           A       0.43      0.36      0.39        25
-           D       0.41      0.30      0.35        23
-           H       0.58      0.70      0.63        47
-
-    accuracy                           0.52        95
-   macro avg       0.47      0.46      0.46        95
-weighted avg       0.50      0.52      0.50        95
-
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning:
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+Holdout (25%) performance for: RandomForest
+Accuracy: 0.5368421052631579
+Macro-F1: 0.4419158361018827
 
-'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+Classification report:
+               precision    recall  f1-score   support
+
+           A       0.50      0.36      0.42        25
+           D       0.33      0.17      0.23        23
+           H       0.58      0.81      0.68        47
+
+    accuracy                           0.54        95
+   macro avg       0.47      0.45      0.44        95
+weighted avg       0.50      0.54      0.50        95
 
 </pre>
 </div>
@@ -11274,13 +11270,7 @@ weighted avg       0.50      0.52      0.50        95
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Fold 1: acc=0.448, macro-f1=0.399
 Fold 2: acc=0.414, macro-f1=0.391
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Fold 3: acc=0.552, macro-f1=0.502
+Fold 3: acc=0.552, macro-f1=0.502
 Fold 4: acc=0.483, macro-f1=0.428
 </pre>
 </div>
@@ -11898,7 +11888,7 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
     <span class="p">(</span><span class="s1">'cat'</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">'ignore'</span><span class="p">),</span> <span class="n">cat_cols</span><span class="p">)</span>
 <span class="p">])</span>
 
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">'balanced'</span><span class="p">,</span> <span class="n">multi_class</span><span class="o">=</span><span class="s1">'multinomial'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">'prep'</span><span class="p">,</span> <span class="n">preprocess</span><span class="p">),</span> <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">clf</span><span class="p">)])</span>
 
 <span class="c1"># Time-series CV within training block (season-aware by chronological split)</span>
@@ -11936,53 +11926,107 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CV fold 1: acc=0.414 macroF1=0.330
+<pre>CV fold 1: acc=0.392 macroF1=0.367
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning:
+
+'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+
+/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning:
+
+'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CV fold 2: acc=0.539 macroF1=0.413
+<pre>CV fold 2: acc=0.434 macroF1=0.412
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning:
+
+'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CV fold 3: acc=0.529 macroF1=0.395
+<pre>CV fold 3: acc=0.436 macroF1=0.420
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning:
+
+'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CV fold 4: acc=0.517 macroF1=0.400
+<pre>CV fold 4: acc=0.473 macroF1=0.438
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning:
+
+'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>CV fold 5: acc=0.523 macroF1=0.413
+<pre>CV fold 5: acc=0.491 macroF1=0.468
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning:
+
+'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Holdout seasons ['1516'] | acc=0.531 macroF1=0.420 bal-acc=0.444 logloss=1.099
+<pre>Holdout seasons ['1516'] | acc=0.454 macroF1=0.437 bal-acc=0.448 logloss=1.142
 
 Classification report on holdout:
                precision    recall  f1-score   support
 
-           A       0.44      0.45      0.45       105
-           D       0.36      0.09      0.14        90
-           H       0.58      0.80      0.67       182
+           A       0.39      0.54      0.46       105
+           D       0.30      0.34      0.32        90
+           H       0.65      0.46      0.54       182
 
-    accuracy                           0.53       377
-   macro avg       0.46      0.44      0.42       377
-weighted avg       0.49      0.53      0.48       377
+    accuracy                           0.45       377
+   macro avg       0.45      0.45      0.44       377
+weighted avg       0.50      0.45      0.46       377
 
 </pre>
 </div>
