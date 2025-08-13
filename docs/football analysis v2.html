@@ -9656,21 +9656,21 @@ Average number of goals scored by away teams: 1.08
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Accuracy: 0.5368421052631579
+<pre>Accuracy: 0.5263157894736842
 
 Confusion Matrix:
- [[26 22]
+ [[25 23]
  [22 25]]
 
 Classification Report:
                precision    recall  f1-score   support
 
-           0       0.54      0.54      0.54        48
-           1       0.53      0.53      0.53        47
+           0       0.53      0.52      0.53        48
+           1       0.52      0.53      0.53        47
 
-    accuracy                           0.54        95
-   macro avg       0.54      0.54      0.54        95
-weighted avg       0.54      0.54      0.54        95
+    accuracy                           0.53        95
+   macro avg       0.53      0.53      0.53        95
+weighted avg       0.53      0.53      0.53        95
 
 </pre>
 </div>
@@ -9771,10 +9771,10 @@ weighted avg       0.54      0.54      0.54        95
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[[ 6  8 16]
- [ 3  4 21]
- [ 5 12 39]]
-0.4298245614035088
+<pre>[[ 6  4 14]
+ [ 4  5 20]
+ [ 6 10 45]]
+0.49122807017543857
 </pre>
 </div>
 </div>
@@ -10574,7 +10574,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Accuracy: 0.5175438596491229
+<pre>Accuracy: 0.5350877192982456
 </pre>
 </div>
 </div>
@@ -10642,7 +10642,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Naive Bayes accuracy: 0.41228070175438597
+<pre>Naive Bayes accuracy: 0.2982456140350877
 </pre>
 </div>
 </div>
@@ -10963,7 +10963,13 @@ Skipping features without any observed values: ['Referee']. At least one non-mis
   warnings.warn(
 /home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
   warnings.warn(
-/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.7. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
   warnings.warn(
 </pre>
 </div>
@@ -11693,18 +11699,31 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
     <span class="n">a_elo</span> <span class="o">=</span> <span class="n">elo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">)</span>
     <span class="n">elo_diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">h_elo</span> <span class="o">+</span> <span class="n">HOME_ADV</span><span class="p">)</span> <span class="o">-</span> <span class="n">a_elo</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">rolling_stats</span><span class="p">(</span><span class="n">team</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rolling_stats</span><span class="p">(</span><span class="n">team</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
         <span class="n">rec</span> <span class="o">=</span> <span class="n">history</span><span class="p">[</span><span class="n">team</span><span class="p">][</span><span class="o">-</span><span class="n">n</span><span class="p">:]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">rec</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">{</span><span class="s1">'pts'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'gf'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'ga'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'hst'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'ast'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
-        <span class="k">return</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">'mean'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'pts'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'gf'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'ga'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'hst'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'ast'</span><span class="p">:</span><span class="mf">0.</span><span class="p">},</span>
+                    <span class="s1">'ewm'</span><span class="p">:</span>  <span class="p">{</span><span class="s1">'pts'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'gf'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'ga'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'hst'</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">'ast'</span><span class="p">:</span><span class="mf">0.</span><span class="p">},</span>
+                    <span class="s1">'n'</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="c1"># simple means</span>
+        <span class="n">mean_vals</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">'pts'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'pts'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">]),</span>
             <span class="s1">'gf'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'gf'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">]),</span>
             <span class="s1">'ga'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'ga'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">]),</span>
             <span class="s1">'hst'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'hst'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">]),</span>
-            <span class="s1">'ast'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'ast'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">]),</span>
-            <span class="s1">'n'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
+            <span class="s1">'ast'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'ast'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">])</span>
         <span class="p">}</span>
+        <span class="c1"># decayed means (most recent has highest weight)</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">decay</span> <span class="o">**</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="p">))][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">weights</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">ewm_vals</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'pts'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'pts'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">],</span> <span class="n">weights</span><span class="p">)),</span>
+            <span class="s1">'gf'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'gf'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">],</span> <span class="n">weights</span><span class="p">)),</span>
+            <span class="s1">'ga'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'ga'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">],</span> <span class="n">weights</span><span class="p">)),</span>
+            <span class="s1">'hst'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'hst'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">],</span> <span class="n">weights</span><span class="p">)),</span>
+            <span class="s1">'ast'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s1">'ast'</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rec</span><span class="p">],</span> <span class="n">weights</span><span class="p">))</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'mean'</span><span class="p">:</span> <span class="n">mean_vals</span><span class="p">,</span> <span class="s1">'ewm'</span><span class="p">:</span> <span class="n">ewm_vals</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="p">)}</span>
 
     <span class="n">h_roll</span> <span class="o">=</span> <span class="n">rolling_stats</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
     <span class="n">a_roll</span> <span class="o">=</span> <span class="n">rolling_stats</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -11713,20 +11732,44 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
         <span class="n">lp</span> <span class="o">=</span> <span class="n">last_played</span><span class="p">[</span><span class="n">team</span><span class="p">]</span>
         <span class="k">return</span> <span class="mf">14.0</span> <span class="k">if</span> <span class="n">lp</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">lp</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
 
-    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="n">h_rest</span> <span class="o">=</span> <span class="n">rest_days</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">a_rest</span> <span class="o">=</span> <span class="n">rest_days</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">rest_diff</span> <span class="o">=</span> <span class="n">h_rest</span> <span class="o">-</span> <span class="n">a_rest</span>
+
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">'Season'</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span>
         <span class="s1">'Date'</span><span class="p">:</span> <span class="n">d</span><span class="p">,</span>
         <span class="s1">'HomeTeam'</span><span class="p">:</span> <span class="n">h</span><span class="p">,</span>
         <span class="s1">'AwayTeam'</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span>
         <span class="s1">'FTR'</span><span class="p">:</span> <span class="n">ftr</span><span class="p">,</span>
         <span class="s1">'elo_diff'</span><span class="p">:</span> <span class="n">elo_diff</span><span class="p">,</span>
-        <span class="s1">'h_pts6'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'pts'</span><span class="p">],</span> <span class="s1">'a_pts6'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'pts'</span><span class="p">],</span>
-        <span class="s1">'h_gf6'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'gf'</span><span class="p">],</span> <span class="s1">'a_gf6'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'gf'</span><span class="p">],</span>
-        <span class="s1">'h_ga6'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'ga'</span><span class="p">],</span> <span class="s1">'a_ga6'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'ga'</span><span class="p">],</span>
-        <span class="s1">'h_hst6'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'hst'</span><span class="p">],</span> <span class="s1">'a_hst6'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'ast'</span><span class="p">],</span>
-        <span class="s1">'h_rest'</span><span class="p">:</span> <span class="n">rest_days</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="s1">'a_rest'</span><span class="p">:</span> <span class="n">rest_days</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
+        <span class="s1">'h_pts6'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">][</span><span class="s1">'pts'</span><span class="p">],</span> <span class="s1">'a_pts6'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">][</span><span class="s1">'pts'</span><span class="p">],</span>
+        <span class="s1">'h_gf6'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">][</span><span class="s1">'gf'</span><span class="p">],</span> <span class="s1">'a_gf6'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">][</span><span class="s1">'gf'</span><span class="p">],</span>
+        <span class="s1">'h_ga6'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">][</span><span class="s1">'ga'</span><span class="p">],</span> <span class="s1">'a_ga6'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">][</span><span class="s1">'ga'</span><span class="p">],</span>
+        <span class="s1">'h_hst6'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">][</span><span class="s1">'hst'</span><span class="p">],</span> <span class="s1">'a_hst6'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'mean'</span><span class="p">][</span><span class="s1">'ast'</span><span class="p">],</span>
+        <span class="s1">'h_pts6_ewm'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'ewm'</span><span class="p">][</span><span class="s1">'pts'</span><span class="p">],</span> <span class="s1">'a_pts6_ewm'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'ewm'</span><span class="p">][</span><span class="s1">'pts'</span><span class="p">],</span>
+        <span class="s1">'h_gf6_ewm'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'ewm'</span><span class="p">][</span><span class="s1">'gf'</span><span class="p">],</span> <span class="s1">'a_gf6_ewm'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'ewm'</span><span class="p">][</span><span class="s1">'gf'</span><span class="p">],</span>
+        <span class="s1">'h_ga6_ewm'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'ewm'</span><span class="p">][</span><span class="s1">'ga'</span><span class="p">],</span> <span class="s1">'a_ga6_ewm'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'ewm'</span><span class="p">][</span><span class="s1">'ga'</span><span class="p">],</span>
+        <span class="s1">'h_hst6_ewm'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'ewm'</span><span class="p">][</span><span class="s1">'hst'</span><span class="p">],</span> <span class="s1">'a_hst6_ewm'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'ewm'</span><span class="p">][</span><span class="s1">'ast'</span><span class="p">],</span>
+        <span class="s1">'h_rest'</span><span class="p">:</span> <span class="n">h_rest</span><span class="p">,</span> <span class="s1">'a_rest'</span><span class="p">:</span> <span class="n">a_rest</span><span class="p">,</span>
+        <span class="s1">'rest_diff'</span><span class="p">:</span> <span class="n">rest_diff</span><span class="p">,</span>
+        <span class="s1">'elo_rest_int'</span><span class="p">:</span> <span class="n">elo_diff</span> <span class="o">*</span> <span class="n">rest_diff</span><span class="p">,</span>
         <span class="s1">'h_n'</span><span class="p">:</span> <span class="n">h_roll</span><span class="p">[</span><span class="s1">'n'</span><span class="p">],</span> <span class="s1">'a_n'</span><span class="p">:</span> <span class="n">a_roll</span><span class="p">[</span><span class="s1">'n'</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Simple diffs</span>
+    <span class="n">row</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+        <span class="s1">'pts6_diff'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'h_pts6'</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">'a_pts6'</span><span class="p">],</span>
+        <span class="s1">'gf6_diff'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'h_gf6'</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">'a_gf6'</span><span class="p">],</span>
+        <span class="s1">'ga6_diff'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'h_ga6'</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">'a_ga6'</span><span class="p">],</span>
+        <span class="s1">'hst6_diff'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'h_hst6'</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">'a_hst6'</span><span class="p">],</span>
+        <span class="s1">'pts6_ewm_diff'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'h_pts6_ewm'</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">'a_pts6_ewm'</span><span class="p">],</span>
+        <span class="s1">'gf6_ewm_diff'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'h_gf6_ewm'</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">'a_gf6_ewm'</span><span class="p">],</span>
+        <span class="s1">'ga6_ewm_diff'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'h_ga6_ewm'</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">'a_ga6_ewm'</span><span class="p">],</span>
+        <span class="s1">'hst6_ewm_diff'</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'h_hst6_ewm'</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">'a_hst6_ewm'</span><span class="p">]</span>
     <span class="p">})</span>
+
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 
     <span class="c1"># Post-match updates</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">pts_home</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
@@ -11752,7 +11795,7 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
 <span class="n">fe_ms</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
 <span class="c1"># burn-in filter</span>
 <span class="n">fe_ms</span> <span class="o">=</span> <span class="n">fe_ms</span><span class="p">[(</span><span class="n">fe_ms</span><span class="p">[</span><span class="s1">'h_n'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">fe_ms</span><span class="p">[</span><span class="s1">'a_n'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fe_ms</span><span class="p">[[</span><span class="s1">'Season'</span><span class="p">,</span><span class="s1">'Date'</span><span class="p">,</span><span class="s1">'HomeTeam'</span><span class="p">,</span><span class="s1">'AwayTeam'</span><span class="p">,</span><span class="s1">'elo_diff'</span><span class="p">,</span><span class="s1">'h_pts6'</span><span class="p">,</span><span class="s1">'a_pts6'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fe_ms</span><span class="p">[[</span><span class="s1">'Season'</span><span class="p">,</span><span class="s1">'Date'</span><span class="p">,</span><span class="s1">'HomeTeam'</span><span class="p">,</span><span class="s1">'AwayTeam'</span><span class="p">,</span><span class="s1">'elo_diff'</span><span class="p">,</span><span class="s1">'h_pts6'</span><span class="p">,</span><span class="s1">'a_pts6'</span><span class="p">,</span><span class="s1">'pts6_diff'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -11765,12 +11808,19 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>  Season       Date    HomeTeam     AwayTeam   elo_diff    h_pts6    a_pts6
-0   0708 2007-09-22  recreativo      espanol  53.104203  0.666667  1.333333
-1   0708 2007-09-23  villarreal       murcia  64.586220  2.000000  1.666667
-2   0708 2007-09-23  valladolid  real madrid  33.007300  1.333333  3.000000
-3   0708 2007-09-23     levante   ath bilbao  54.048735  0.333333  0.666667
-4   0708 2007-09-23      getafe    la coruna  42.711663  0.333333  1.333333
+<pre>  Season       Date    HomeTeam     AwayTeam   elo_diff    h_pts6    a_pts6  \
+0   0708 2007-09-22  recreativo      espanol  53.104203  0.666667  1.333333   
+1   0708 2007-09-23  villarreal       murcia  64.586220  2.000000  1.666667   
+2   0708 2007-09-23  valladolid  real madrid  33.007300  1.333333  3.000000   
+3   0708 2007-09-23     levante   ath bilbao  54.048735  0.333333  0.666667   
+4   0708 2007-09-23      getafe    la coruna  42.711663  0.333333  1.333333   
+
+   pts6_diff  
+0  -0.666667  
+1   0.333333  
+2  -1.666667  
+3  -0.333333  
+4  -1.000000  
 </pre>
 </div>
 </div>
@@ -11789,9 +11839,15 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">log_loss</span><span class="p">,</span> <span class="n">balanced_accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
 
 <span class="c1"># Features and target</span>
-<span class="n">num_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'elo_diff'</span><span class="p">,</span><span class="s1">'h_pts6'</span><span class="p">,</span><span class="s1">'a_pts6'</span><span class="p">,</span><span class="s1">'h_gf6'</span><span class="p">,</span><span class="s1">'a_gf6'</span><span class="p">,</span><span class="s1">'h_ga6'</span><span class="p">,</span><span class="s1">'a_ga6'</span><span class="p">,</span><span class="s1">'h_hst6'</span><span class="p">,</span><span class="s1">'a_hst6'</span><span class="p">,</span><span class="s1">'h_rest'</span><span class="p">,</span><span class="s1">'a_rest'</span><span class="p">]</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'elo_diff'</span><span class="p">,</span><span class="s1">'h_pts6'</span><span class="p">,</span><span class="s1">'a_pts6'</span><span class="p">,</span><span class="s1">'h_gf6'</span><span class="p">,</span><span class="s1">'a_gf6'</span><span class="p">,</span><span class="s1">'h_ga6'</span><span class="p">,</span><span class="s1">'a_ga6'</span><span class="p">,</span><span class="s1">'h_hst6'</span><span class="p">,</span><span class="s1">'a_hst6'</span><span class="p">,</span><span class="s1">'h_rest'</span><span class="p">,</span><span class="s1">'a_rest'</span><span class="p">,</span>
+    <span class="s1">'pts6_diff'</span><span class="p">,</span><span class="s1">'gf6_diff'</span><span class="p">,</span><span class="s1">'ga6_diff'</span><span class="p">,</span><span class="s1">'hst6_diff'</span><span class="p">,</span>
+    <span class="s1">'h_pts6_ewm'</span><span class="p">,</span><span class="s1">'a_pts6_ewm'</span><span class="p">,</span><span class="s1">'h_gf6_ewm'</span><span class="p">,</span><span class="s1">'a_gf6_ewm'</span><span class="p">,</span><span class="s1">'h_ga6_ewm'</span><span class="p">,</span><span class="s1">'a_ga6_ewm'</span><span class="p">,</span><span class="s1">'h_hst6_ewm'</span><span class="p">,</span><span class="s1">'a_hst6_ewm'</span><span class="p">,</span>
+    <span class="s1">'pts6_ewm_diff'</span><span class="p">,</span><span class="s1">'gf6_ewm_diff'</span><span class="p">,</span><span class="s1">'ga6_ewm_diff'</span><span class="p">,</span><span class="s1">'hst6_ewm_diff'</span><span class="p">,</span><span class="s1">'rest_diff'</span><span class="p">,</span><span class="s1">'elo_rest_int'</span>
+<span class="p">]</span>
 <span class="n">cat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'HomeTeam'</span><span class="p">,</span><span class="s1">'AwayTeam'</span><span class="p">,</span><span class="s1">'Season'</span><span class="p">]</span>  <span class="c1"># include Season to absorb era shift</span>
 <span class="n">X_all</span> <span class="o">=</span> <span class="n">fe_ms</span><span class="p">[</span><span class="n">num_cols</span> <span class="o">+</span> <span class="n">cat_cols</span><span class="p">]</span>
 <span class="n">y_all</span> <span class="o">=</span> <span class="n">fe_ms</span><span class="p">[</span><span class="s1">'FTR'</span><span class="p">]</span>
@@ -11811,6 +11867,18 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
 
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">'prep'</span><span class="p">,</span> <span class="n">preprocess</span><span class="p">),</span> <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">clf</span><span class="p">)])</span>
+
+<span class="c1"># Time-series CV within training block (season-aware by chronological split)</span>
+<span class="c1"># We split by time order of rows (already sorted by Date earlier)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">cv_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">va</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">aX</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">aX</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">tr</span><span class="p">],</span> <span class="n">ay</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">tr</span><span class="p">])</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">aX</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">va</span><span class="p">])</span>
+    <span class="n">acc_i</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">ay</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">va</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">f1_i</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">ay</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">va</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">)</span>
+    <span class="n">cv_scores</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">acc_i</span><span class="p">,</span> <span class="n">f1_i</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"CV fold </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: acc=</span><span class="si">{</span><span class="n">acc_i</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> macroF1=</span><span class="si">{</span><span class="n">f1_i</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">aX</span><span class="p">,</span> <span class="n">ay</span><span class="p">)</span>
 <span class="n">probs</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">bX</span><span class="p">)</span>
@@ -11835,18 +11903,47 @@ Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Holdout seasons ['1516'] | acc=0.528 macroF1=0.397 bal-acc=0.434 logloss=0.973
+<pre>CV fold 1: acc=0.414 macroF1=0.330
+CV fold 2: acc=0.539 macroF1=0.413
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>CV fold 3: acc=0.529 macroF1=0.395
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>CV fold 4: acc=0.517 macroF1=0.400
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>CV fold 5: acc=0.523 macroF1=0.413
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Holdout seasons ['1516'] | acc=0.531 macroF1=0.420 bal-acc=0.444 logloss=1.099
 
 Classification report on holdout:
                precision    recall  f1-score   support
 
-           A       0.44      0.44      0.44       105
-           D       0.29      0.04      0.08        90
-           H       0.58      0.82      0.68       182
+           A       0.44      0.45      0.45       105
+           D       0.36      0.09      0.14        90
+           H       0.58      0.80      0.67       182
 
     accuracy                           0.53       377
-   macro avg       0.43      0.43      0.40       377
-weighted avg       0.47      0.53      0.47       377
+   macro avg       0.46      0.44      0.42       377
+weighted avg       0.49      0.53      0.48       377
 
 </pre>
 </div>
