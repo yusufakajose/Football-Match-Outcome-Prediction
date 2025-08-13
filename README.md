@@ -1,43 +1,60 @@
-# Football-Match-Outcome-Prediction
-## Table Of Contents
-- Introduction
-- Data Loading and Preparation
-  - Exploratory Data Analysis
-  - Creating New Variables
-    - Possession Ratio
-    - Goals Per Game
-    - Shots On Target Ratio
-    - Passing Accuracy
-    - Number Of Fouls Per Game
-    - Yellow Card Ratio
-    - Red Card Ratio
-    - Home Advantage
-    - Winning Ratio
-- Predicting Match Outcomes using Machine Learning
-  - Data Preprocessing
-  - Decision Trees
-  - Random Forest
-  - Support Vector Machines
-  - Naive Bayes
-  - K-Nearest Neighbors
-  - Model Comparison and Diagnostics
-- Conclusion
+# Football Match Outcome Prediction
 
+## Overview
 
- ## Project Overview
+Predicting football match outcomes is challenging due to small samples and many confounding factors. This project analyzes the Spanish La Liga 2011–2012 season and builds baseline machine learning models. It also adds an improved, reproducible modeling pipeline that avoids data leakage and can be extended with richer features.
 
-This project aims to predict the outcome of football matches using machine learning techniques. The dataset used in this project is from the La Liga 2011-2012 season, which includes data from all 20 teams that competed that year.
+## What's Inside
 
-The project starts with data loading and preparation, followed by exploratory data analysis to identify trends and patterns in the data. New variables were created such as possession ratio, goals per game, shots on target ratio, passing accuracy, number of fouls per game, yellow card ratio, red card ratio, home advantage, winning ratio, and form.
+- EDA and feature experiments in the notebook `docs/football analysis v2.ipynb`
+- Classic models (Decision Tree, Random Forest, SVM, Naive Bayes, KNN)
+- New baseline: clean sklearn `Pipeline` with `OneHotEncoder`, 5-fold stratified CV, and holdout evaluation using only pre-match identifiers (`HomeTeam`, `AwayTeam`)
 
-A head-to-head analysis was performed between Barcelona and Real Madrid, two of the biggest rivals in La Liga. The analysis included a rivalry timeline that displayed the number of matches played, the number of goals scored, and the number of yellow and red cards given in each match between the two teams.
+## Quickstart
 
-Afterwards, five machine learning models were used to predict the outcomes of football matches: Decision Trees, Random Forest, Support Vector Machines, Naive Bayes, and K-Nearest Neighbors.
+1) Create environment and install dependencies
 
-The models were compared based on their accuracy scores, with Support Vector Machines performing the best (55.26%) and Naive Bayes performing the worst (45.61%).
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-The poor accuracy scores can be attributed to the small size of the dataset and the limited number of features available. However, the project provides valuable insights into the factors that contribute to match outcomes and suggests areas for further exploration.
+2) Open the notebook
 
-To improve the accuracy of the models, additional data can be collected such as player statistics, team formations, and weather conditions. In addition, feature engineering techniques such as scaling, normalization, and dimensionality reduction can be applied to the existing features to enhance their predictive power.
+```bash
+jupyter lab docs/"football analysis v2.ipynb"
+```
 
-In conclusion, this project demonstrates the use of machine learning techniques to predict the outcomes of football matches. While the accuracy of the models may be limited due to the dataset size and feature availability, the project provides valuable insights into the factors that contribute to match outcomes and suggests avenues for further research.
+3) Run the section "Improved, Reproducible Modeling Pipeline" at the end of the notebook.
+
+## Data
+
+- Source: `https://raw.githubusercontent.com/datasets/football-datasets/master/datasets/la-liga/season-1112.csv`
+- Target: `FTR` with three classes: `H` (home win), `D` (draw), `A` (away win)
+
+## Baseline Without Leakage
+
+- Uses only pre-match identifiers (team names) with one-hot encoding
+- 5-fold stratified cross-validation reports Accuracy and Macro-F1
+- Final model refit on train and evaluated on a stratified 25% holdout
+
+Why: in-match stats (shots, goals, fouls of the same fixture) are not available before kickoff. Using them to predict that fixture leaks outcome information.
+
+## Roadmap (Improvements)
+
+- Rolling features from past matches only (last N: goals for/against, shots, SOT, fouls, cards, corners)
+- Recent form features (points in last 5, streaks)
+- Simple Elo/SPI ratings; use rating differences as features
+- Rest days and travel proxies
+- Bookmaker odds, lineups/injuries where available
+- Time-aware CV (e.g., `TimeSeriesSplit`) for chronological validation
+
+## Results Snapshot
+
+- Earlier experiments: accuracies roughly 45–60% depending on model and leakage risk
+- New pipeline prints CV summary (Accuracy, Macro-F1) and holdout metrics for the best model
+
+## License
+
+This repository is for educational purposes. Check data source terms before redistribution.
