@@ -9656,21 +9656,21 @@ Average number of goals scored by away teams: 1.08
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Accuracy: 0.5263157894736842
+<pre>Accuracy: 0.5368421052631579
 
 Confusion Matrix:
- [[25 23]
+ [[26 22]
  [22 25]]
 
 Classification Report:
                precision    recall  f1-score   support
 
-           0       0.53      0.52      0.53        48
-           1       0.52      0.53      0.53        47
+           0       0.54      0.54      0.54        48
+           1       0.53      0.53      0.53        47
 
-    accuracy                           0.53        95
-   macro avg       0.53      0.53      0.53        95
-weighted avg       0.53      0.53      0.53        95
+    accuracy                           0.54        95
+   macro avg       0.54      0.54      0.54        95
+weighted avg       0.54      0.54      0.54        95
 
 </pre>
 </div>
@@ -9771,10 +9771,10 @@ weighted avg       0.53      0.53      0.53        95
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[[10  3 17]
- [ 1  9 11]
- [ 6 16 41]]
-0.5263157894736842
+<pre>[[ 6  8 16]
+ [ 3  4 21]
+ [ 5 12 39]]
+0.4298245614035088
 </pre>
 </div>
 </div>
@@ -10574,7 +10574,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Accuracy: 0.5526315789473685
+<pre>Accuracy: 0.5175438596491229
 </pre>
 </div>
 </div>
@@ -10642,7 +10642,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Naive Bayes accuracy: 0.35964912280701755
+<pre>Naive Bayes accuracy: 0.41228070175438597
 </pre>
 </div>
 </div>
@@ -11270,16 +11270,16 @@ weighted avg       0.50      0.52      0.50        95
 Fold 2: acc=0.414, macro-f1=0.391
 Fold 3: acc=0.552, macro-f1=0.502
 Fold 4: acc=0.483, macro-f1=0.428
-Fold 5: acc=0.466, macro-f1=0.387
-CV mean acc=0.472 ± 0.046
-CV mean macro-f1=0.422 ± 0.043
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
+<pre>Fold 5: acc=0.466, macro-f1=0.387
+CV mean acc=0.472 ± 0.046
+CV mean macro-f1=0.422 ± 0.043
+
 Holdout results (last 20%):
 Accuracy: 0.4714285714285714
 Macro-F1: 0.3953058435817057
@@ -11585,15 +11585,48 @@ elo_diff         0.000714        0.033949
     <span class="n">df</span><span class="p">[</span><span class="s1">'Season'</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
     <span class="c1"># normalize date and team strings</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'</span><span class="si">%d</span><span class="s1">/%m/%y'</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">'HomeTeam'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'HomeTeam'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">'AwayTeam'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'AwayTeam'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">'HomeTeam'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'HomeTeam'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">'AwayTeam'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'AwayTeam'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-<span class="n">multi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># Drop rows with invalid dates</span>
-<span class="n">multi</span> <span class="o">=</span> <span class="n">multi</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'Date'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">multi_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">SEASONS</span><span class="p">)</span><span class="si">}</span><span class="s2"> seasons, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi</span><span class="p">)</span><span class="si">}</span><span class="s2"> matches"</span><span class="p">)</span>
+<span class="c1"># Basic integrity checks and cleaning</span>
+<span class="n">required_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'FTR'</span><span class="p">,</span><span class="s1">'FTHG'</span><span class="p">,</span><span class="s1">'FTAG'</span><span class="p">,</span><span class="s1">'HST'</span><span class="p">,</span><span class="s1">'AST'</span><span class="p">,</span><span class="s1">'HF'</span><span class="p">,</span><span class="s1">'AF'</span><span class="p">,</span><span class="s1">'HC'</span><span class="p">,</span><span class="s1">'AC'</span><span class="p">,</span><span class="s1">'HY'</span><span class="p">,</span><span class="s1">'AY'</span><span class="p">,</span><span class="s1">'HR'</span><span class="p">,</span><span class="s1">'AR'</span><span class="p">]</span>
+<span class="n">missing_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">required_cols</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">multi_raw</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">missing_cols</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Warning: missing expected columns: </span><span class="si">{</span><span class="n">missing_cols</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Drop rows with invalid dates</span>
+<span class="n">multi</span> <span class="o">=</span> <span class="n">multi_raw</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Keep only valid FTR labels</span>
+<span class="n">allowed_ftr</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'H'</span><span class="p">,</span><span class="s1">'D'</span><span class="p">,</span><span class="s1">'A'</span><span class="p">}</span>
+<span class="n">invalid_ftr_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">multi</span><span class="p">[</span><span class="s1">'FTR'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">allowed_ftr</span><span class="p">))</span>
+<span class="n">invalid_ftr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">invalid_ftr_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">invalid_ftr</span><span class="p">:</span>
+    <span class="n">multi</span> <span class="o">=</span> <span class="n">multi</span><span class="p">[</span><span class="o">~</span><span class="n">invalid_ftr_mask</span><span class="p">]</span>
+
+<span class="c1"># Remove rows with negative numeric values (should not exist)</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'FTHG'</span><span class="p">,</span><span class="s1">'FTAG'</span><span class="p">,</span><span class="s1">'HST'</span><span class="p">,</span><span class="s1">'AST'</span><span class="p">,</span><span class="s1">'HF'</span><span class="p">,</span><span class="s1">'AF'</span><span class="p">,</span><span class="s1">'HC'</span><span class="p">,</span><span class="s1">'AC'</span><span class="p">,</span><span class="s1">'HY'</span><span class="p">,</span><span class="s1">'AY'</span><span class="p">,</span><span class="s1">'HR'</span><span class="p">,</span><span class="s1">'AR'</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">multi</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">neg_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">multi</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">numeric_cols</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">multi</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">neg_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">neg_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">neg_count</span><span class="p">:</span>
+    <span class="n">multi</span> <span class="o">=</span> <span class="n">multi</span><span class="p">[</span><span class="o">~</span><span class="n">neg_mask</span><span class="p">]</span>
+
+<span class="c1"># Drop exact duplicate fixtures</span>
+<span class="n">n_before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">multi</span><span class="p">)</span>
+<span class="n">dupe_subset</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Season'</span><span class="p">,</span><span class="s1">'Date'</span><span class="p">,</span><span class="s1">'HomeTeam'</span><span class="p">,</span><span class="s1">'AwayTeam'</span><span class="p">,</span><span class="s1">'FTHG'</span><span class="p">,</span><span class="s1">'FTAG'</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">multi</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">dupe_subset</span><span class="p">:</span>
+    <span class="n">multi</span> <span class="o">=</span> <span class="n">multi</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">dupe_subset</span><span class="p">)</span>
+
+<span class="n">n_after</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">multi</span><span class="p">)</span>
+<span class="n">n_dupes</span> <span class="o">=</span> <span class="n">n_before</span> <span class="o">-</span> <span class="n">n_after</span>
+
+<span class="n">multi</span> <span class="o">=</span> <span class="n">multi</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'Date'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">SEASONS</span><span class="p">)</span><span class="si">}</span><span class="s2"> seasons"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Rows: raw=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi_raw</span><span class="p">)</span><span class="si">}</span><span class="s2">, after_clean=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multi</span><span class="p">)</span><span class="si">}</span><span class="s2">, removed dupes=</span><span class="si">{</span><span class="n">n_dupes</span><span class="si">}</span><span class="s2">, invalid_ftr=</span><span class="si">{</span><span class="n">invalid_ftr</span><span class="si">}</span><span class="s2">, negatives=</span><span class="si">{</span><span class="n">neg_count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">multi</span><span class="p">[[</span><span class="s1">'Season'</span><span class="p">,</span><span class="s1">'Date'</span><span class="p">,</span><span class="s1">'HomeTeam'</span><span class="p">,</span><span class="s1">'AwayTeam'</span><span class="p">,</span><span class="s1">'FTR'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -11607,13 +11640,14 @@ elo_diff         0.000714        0.033949
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Loaded 9 seasons, 3420 matches
+<pre>Loaded 9 seasons
+Rows: raw=3420, after_clean=3420, removed dupes=0, invalid_ftr=0, negatives=0
   Season       Date     HomeTeam    AwayTeam FTR
-0   0708 2007-08-25  Real Madrid  Ath Madrid   H
-1   0708 2007-08-25      Sevilla      Getafe   H
-2   0708 2007-08-26   Ath Bilbao     Osasuna   D
-3   0708 2007-08-26      Espanol  Valladolid   A
-4   0708 2007-08-26    La Coruna     Almeria   A
+0   0708 2007-08-25  real madrid  ath madrid   H
+1   0708 2007-08-25      sevilla      getafe   H
+2   0708 2007-08-26   ath bilbao     osasuna   D
+3   0708 2007-08-26      espanol  valladolid   A
+4   0708 2007-08-26    la coruna     almeria   A
 </pre>
 </div>
 </div>
@@ -11732,11 +11766,11 @@ elo_diff         0.000714        0.033949
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>  Season       Date    HomeTeam     AwayTeam   elo_diff    h_pts6    a_pts6
-0   0708 2007-09-22  Recreativo      Espanol  53.104203  0.666667  1.333333
-1   0708 2007-09-23  Villarreal       Murcia  64.586220  2.000000  1.666667
-2   0708 2007-09-23  Valladolid  Real Madrid  33.007300  1.333333  3.000000
-3   0708 2007-09-23     Levante   Ath Bilbao  54.048735  0.333333  0.666667
-4   0708 2007-09-23      Getafe    La Coruna  42.711663  0.333333  1.333333
+0   0708 2007-09-22  recreativo      espanol  53.104203  0.666667  1.333333
+1   0708 2007-09-23  villarreal       murcia  64.586220  2.000000  1.666667
+2   0708 2007-09-23  valladolid  real madrid  33.007300  1.333333  3.000000
+3   0708 2007-09-23     levante   ath bilbao  54.048735  0.333333  0.666667
+4   0708 2007-09-23      getafe    la coruna  42.711663  0.333333  1.333333
 </pre>
 </div>
 </div>
@@ -11802,13 +11836,7 @@ elo_diff         0.000714        0.033949
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Holdout seasons ['1516'] | acc=0.528 macroF1=0.397 bal-acc=0.434 logloss=0.973
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
+
 Classification report on holdout:
                precision    recall  f1-score   support
 
