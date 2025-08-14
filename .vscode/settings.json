@@ -1,0 +1,7 @@
+{
+  "python.defaultInterpreterPath": "/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/bin/python",
+  "css.lint.unknownProperties": "ignore",
+  "css.lint.vendorPrefix": "ignore",
+  "css.lint.compatibleVendorPrefixes": "ignore",
+  "css.validate": false
+}
