@@ -1,0 +1,20 @@
+{
+  "venvPath": "/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main",
+  "venv": ".venv",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "useLibraryCodeForTypes": true,
+  "extraPaths": [
+    "/home/joseph34/Downloads/Football-Match-Outcome-Prediction-main/.venv/lib/python3.12/site-packages"
+  ],
+  "exclude": [
+    "**/docs/**/*.html",
+    ".venv",
+    ".venv/**"
+  ],
+  "ignore": [
+    ".venv",
+    ".venv/**"
+  ]
+}
